@@ -1,0 +1,17 @@
+{
+  "name": "image-organizer",
+  "version": "1.0.0",
+  "description": "Organize your images based on their ratio",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "ozaki",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^7.1.0",
+    "image-size": "^0.9.4"
+  }
+}
