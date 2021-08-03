@@ -11,6 +11,7 @@ const popData = (img, imgPath) => {
   return {
     path,
     ...size,
+    pixels: size.width * size.height,
     ratio: size.width / size.height,
     closestRatio: getClosestRatio(size),
   };
@@ -32,13 +33,15 @@ const createDirs = (path, subDir) => {
   });
 };
 
-const moveImages = ({ path, type, closestRatio }, subDir) => {
+const moveImages = ({ path, type, closestRatio, pixels }, subDir) => {
   const newDirName = getKeyByValue(MAINSTREAM_RATIO, closestRatio);
   const pathInfo = parse(path);
   const newPath = join(
     subDir ? pathInfo.dir : '',
     newDirName,
-    pathInfo.name + '.' + type,
+    pixels < 700 * 700
+      ? `LQIMG_${pathInfo.name}.${type}`
+      : `${pathInfo.name}.${type}`,
   );
   rename(path, newPath);
 };
